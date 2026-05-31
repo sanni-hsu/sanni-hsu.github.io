@@ -4,16 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sanni — Visual Designer Portfolio</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500&family=Noto+Serif+TC:wght@400;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --yellow: #F5C518;
-    --black: #111111;
-    --white: #FAFAF8;
-    --gray: #8A8A8A;
-    --light: #F2F0EB;
-    --accent: #E8DDD0;
-    --ink: #1C1C1C;
+    --yellow: #F0C400;
+    --blue:   #1A6FFF;
+    --black: #0A0A0A;
+    --white: #F8F8F8;
+    --gray: #888888;
+    --light: #EFEFEF;
+    --accent: #DCDCDC;
+    --ink: #1A1A1A;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -21,7 +22,7 @@
   html { scroll-behavior: smooth; }
 
   body {
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Barlow', sans-serif;
     background: var(--white);
     color: var(--ink);
     overflow-x: hidden;
@@ -32,21 +33,67 @@
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     display: flex; align-items: center; justify-content: space-between;
     padding: 18px 48px;
-    background: rgba(250,250,248,0.92);
+    background: rgba(10,10,10,0.95);
     backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(0,0,0,0.06);
+    border-bottom: 1px solid rgba(240,196,0,0.15);
   }
   .nav-logo {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.15rem; font-weight: 700; letter-spacing: 0.04em;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.25rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--white);
+  }
   }
   .nav-links { display: flex; gap: 32px; list-style: none; }
   .nav-links a {
     font-size: 0.82rem; font-weight: 500; letter-spacing: 0.08em;
-    text-transform: uppercase; text-decoration: none; color: var(--gray);
+    text-transform: uppercase; text-decoration: none; color: #888;
     transition: color 0.2s;
   }
-  .nav-links a:hover { color: var(--ink); }
+  .nav-links a:hover { color: var(--yellow); }
+
+  /* ── INDUSTRY INSIGHT ── */
+  #insight { padding: 100px 80px; background: var(--black); }
+  #insight .section-title { color: var(--white); }
+  .insight-grid {
+    display: grid; grid-template-columns: 1.1fr 1fr; gap: 80px; align-items: start;
+  }
+  .insight-lead {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(1.6rem, 2.5vw, 2.2rem); font-weight: 700; text-transform: uppercase;
+    color: var(--white); line-height: 1.3; margin-bottom: 28px;
+  }
+  .insight-lead em { color: var(--yellow); font-style: normal; }
+  .insight-text {
+    font-size: 0.95rem; line-height: 2; color: #999;
+  }
+  .insight-text strong { color: var(--yellow); font-weight: 600; }
+  .insight-pills {
+    display: flex; flex-direction: column; gap: 12px; margin-top: 8px;
+  }
+  .insight-pill {
+    display: flex; align-items: flex-start; gap: 16px;
+    background: #161616; border: 1px solid #2A2A2A;
+    padding: 20px 24px;
+    transition: border-color 0.2s;
+  }
+  .insight-pill:hover { border-color: var(--yellow); }
+  .insight-pill-icon {
+    font-size: 1.4rem; flex-shrink: 0; margin-top: 2px;
+  }
+  .insight-pill-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.95rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.08em; color: var(--yellow); margin-bottom: 6px;
+  }
+  .insight-pill-desc {
+    font-size: 0.83rem; line-height: 1.7; color: #777;
+  }
+  .insight-blue-tag {
+    display: inline-block;
+    background: var(--blue); color: var(--white);
+    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; padding: 4px 10px; margin-bottom: 16px;
+  }
 
   /* ── HERO ── */
   #hero {
@@ -71,9 +118,9 @@
     vertical-align: middle; margin-right: 10px;
   }
   .hero-name {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(3.5rem, 5vw, 5.5rem);
-    font-weight: 900; line-height: 1.0;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(3.5rem, 5vw, 6rem);
+    font-weight: 900; line-height: 1.0; text-transform: uppercase;
     color: var(--black);
   }
   .hero-name em {
@@ -82,8 +129,8 @@
   }
   .hero-title {
     margin-top: 24px;
-    font-family: 'Noto Serif TC', serif;
-    font-size: 1.1rem; font-weight: 400; color: var(--gray);
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 1rem; font-weight: 400; color: var(--gray);
     line-height: 1.8;
   }
   .hero-bio {
@@ -160,9 +207,9 @@
     margin-bottom: 8px;
   }
   .section-title {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Barlow Condensed', sans-serif;
     font-size: clamp(2rem, 3vw, 2.8rem);
-    font-weight: 900; color: var(--black); line-height: 1.15;
+    font-weight: 900; color: var(--black); line-height: 1.1; text-transform: uppercase; letter-spacing: 0.02em;
   }
   .section-line {
     flex: 1; height: 1px; background: var(--accent);
@@ -176,8 +223,8 @@
     gap: 80px; align-items: start;
   }
   .about-quote {
-    font-family: 'Noto Serif TC', serif;
-    font-size: 1.45rem; font-weight: 700; line-height: 1.75;
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 1.35rem; font-weight: 700; line-height: 1.8;
     color: var(--black);
     border-left: 4px solid var(--yellow); padding-left: 28px;
     margin-bottom: 36px;
@@ -222,8 +269,8 @@
     text-transform: uppercase; color: var(--yellow); margin-bottom: 10px;
   }
   .exp-role {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.3rem; font-weight: 700; color: var(--white);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.4rem; font-weight: 700; color: var(--white); letter-spacing: 0.03em; text-transform: uppercase;
     margin-bottom: 6px;
   }
   .exp-company {
@@ -295,9 +342,9 @@
     text-transform: uppercase; color: var(--yellow); margin-bottom: 6px;
   }
   .work-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.3rem; font-weight: 700; color: var(--white);
-    line-height: 1.3; margin-bottom: 8px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.4rem; font-weight: 700; color: var(--white); text-transform: uppercase;
+    line-height: 1.2; margin-bottom: 8px;
   }
   .work-desc {
     font-size: 0.8rem; line-height: 1.7; color: rgba(255,255,255,0.65);
@@ -333,7 +380,7 @@
     font-size: 2.2rem; display: block; margin-bottom: 16px;
   }
   .cat-name {
-    font-family: 'Noto Serif TC', serif;
+    font-family: 'Noto Sans TC', sans-serif;
     font-size: 0.9rem; font-weight: 700; color: var(--black);
     margin-bottom: 8px; line-height: 1.4;
   }
@@ -355,12 +402,12 @@
     align-items: start;
   }
   .contact-tagline {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(2rem, 3.5vw, 3.2rem);
-    font-weight: 900; line-height: 1.15; color: var(--black);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(2rem, 3.5vw, 3.2rem); text-transform: uppercase; letter-spacing: 0.02em;
+    font-weight: 900; line-height: 1.1; color: var(--black);
     margin-bottom: 24px;
   }
-  .contact-tagline span { color: var(--yellow); font-style: italic; }
+  .contact-tagline span { color: var(--yellow); font-style: normal; }
   .contact-sub {
     font-size: 0.95rem; line-height: 1.9; color: #666;
     margin-bottom: 40px;
@@ -461,6 +508,7 @@
     <li><a href="#about">About</a></li>
     <li><a href="#experience">Experience</a></li>
     <li><a href="#works">Works</a></li>
+    <li><a href="#insight">Insight</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
@@ -674,11 +722,67 @@
   </div>
 </section>
 
+<!-- INDUSTRY INSIGHT -->
+<section id="insight">
+  <div class="section-header">
+    <div>
+      <div class="section-num">05 — Industry Insight</div>
+      <h2 class="section-title">產業洞察</h2>
+    </div>
+    <div class="section-line" style="background:#2A2A2A;"></div>
+  </div>
+  <div class="insight-grid">
+    <div>
+      <div class="insight-blue-tag">為什麼我適合這個職位</div>
+      <h3 class="insight-lead">
+        科技感 × 生活感，<br>
+        <em>是行車記錄器品牌</em><br>
+        最難拿捏的平衡。
+      </h3>
+      <p class="insight-text">
+        行車記錄器品牌需要同時傳遞<strong>技術可信度</strong>與<strong>生活易用性</strong>。<br><br>
+        從早期雷達測速系統到跨足生活 3C，品牌在「專業硬派」與「消費者親近」之間持續演進。這正是視覺設計最能發揮影響力的關鍵節點——<br><br>
+        我擅長在這兩端之間找到最有感染力的視覺語言。
+      </p>
+    </div>
+    <div class="insight-pills">
+      <div class="insight-pill">
+        <div class="insight-pill-icon">🎯</div>
+        <div>
+          <div class="insight-pill-title">B2C 電商視覺整合</div>
+          <div class="insight-pill-desc">熟悉電商全渠道視覺佈局，從官網主視覺、促銷 Banner 到社群貼文，能快速建立一致的品牌感知。</div>
+        </div>
+      </div>
+      <div class="insight-pill">
+        <div class="insight-pill-icon">📦</div>
+        <div>
+          <div class="insight-pill-title">產品包裝 × 印刷製作</div>
+          <div class="insight-pill-desc">擁有實體產品包裝設計經驗，了解印刷規範與製作落差，設計稿能直接接軌量產流程。</div>
+        </div>
+      </div>
+      <div class="insight-pill">
+        <div class="insight-pill-icon">🎬</div>
+        <div>
+          <div class="insight-pill-title">商品影像視覺監修</div>
+          <div class="insight-pill-desc">具備商品拍攝視覺指導經驗，能確保硬體產品在影像中呈現質感與科技感的最佳平衡。</div>
+        </div>
+      </div>
+      <div class="insight-pill">
+        <div class="insight-pill-icon">✍️</div>
+        <div>
+          <div class="insight-pill-title">內容與品牌聲音</div>
+          <div class="insight-pill-desc">兼具設計與文字能力，能協助品牌建立一致的視覺語言與內容調性，強化消費者信任感。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- CONTACT -->
 <section id="contact">
   <div class="section-header">
     <div>
-      <div class="section-num">05 — Contact</div>
+      <div class="section-num">06 — Contact</div>
       <h2 class="section-title">聯絡我</h2>
     </div>
     <div class="section-line"></div>
