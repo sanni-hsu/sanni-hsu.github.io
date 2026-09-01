@@ -248,40 +248,60 @@
     background: var(--yellow); border-color: var(--yellow);
     color: var(--black);
   }
+  /* 作品集整體區塊 */
   .works-grid {
-    display: grid; grid-template-columns: repeat(12, 1fr);
-    gap: 20px;
+    display: flex; flex-direction: column; gap: 16px;
   }
+
+  /* 大 Banner 列（2-3個大圖） */
+  .works-row-banner {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+  }
+  .works-row-banner.single { grid-template-columns: 1fr; }
+
+  /* 小圖列（多張縮圖） */
+  .works-row-small {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
+  }
+
   .work-card {
     position: relative; overflow: hidden; cursor: pointer;
     background: var(--light);
   }
-  .work-card:nth-child(1) { grid-column: span 7; }
-  .work-card:nth-child(2) { grid-column: span 5; }
-  .work-card:nth-child(3) { grid-column: span 4; }
-  .work-card:nth-child(4) { grid-column: span 4; }
-  .work-card:nth-child(5) { grid-column: span 4; }
-  .work-img {
+
+  /* 大 Banner 圖比例 3:1 */
+  .work-card.banner .work-img-placeholder,
+  .work-card.banner img {
+    width: 100%; aspect-ratio: 3/1;
+    object-fit: cover; display: block;
+  }
+
+  /* 中圖比例 16:9 */
+  .work-card.medium .work-img-placeholder,
+  .work-card.medium img {
+    width: 100%; aspect-ratio: 16/9;
+    object-fit: cover; display: block;
+  }
+
+  /* 小圖比例 4:3 */
+  .work-card.small .work-img-placeholder,
+  .work-card.small img {
     width: 100%; aspect-ratio: 4/3;
     object-fit: cover; display: block;
-    transition: transform 0.5s ease;
-    background: var(--accent);
-    position: relative;
   }
+
   .work-img-placeholder {
-    width: 100%; aspect-ratio: 4/3;
     display: flex; align-items: center; justify-content: center;
     background: linear-gradient(135deg, var(--accent) 0%, var(--light) 100%);
     position: relative; overflow: hidden;
     transition: transform 0.5s ease;
   }
-  .work-card:nth-child(1) .work-img-placeholder { aspect-ratio: 16/9; }
-  .work-card:nth-child(2) .work-img-placeholder { aspect-ratio: 3/4; }
   .work-img-placeholder::before {
     content: attr(data-icon);
     font-size: 3rem; opacity: 0.25;
   }
   .work-card:hover .work-img-placeholder { transform: scale(1.03); }
+  .work-card:hover img { transform: scale(1.03); transition: transform 0.5s ease; }
   .work-overlay {
     position: absolute; inset: 0;
     background: rgba(17,17,17,0.88);
@@ -446,8 +466,10 @@
     .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 40px; }
     .exp-grid { grid-template-columns: 1fr; }
     .cat-grid { grid-template-columns: repeat(2, 1fr); }
-    .works-grid { grid-template-columns: 1fr; }
-    .work-card { grid-column: span 1 !important; }
+    .works-row-banner { grid-template-columns: 1fr; }
+    .works-row-small { grid-template-columns: repeat(2, 1fr); }
+    .work-card.banner .work-img-placeholder,
+    .work-card.banner img { aspect-ratio: 16/9; }
     footer { padding: 32px 24px; flex-direction: column; gap: 12px; text-align: center; }
   }
 </style>
@@ -581,51 +603,82 @@
     <button class="filter-btn" onclick="filterWorks('blog', this)">Blog</button>
   </div>
   <div class="works-grid">
-    <div class="work-card" data-cat="ecommerce">
-      <div class="work-img-placeholder" data-icon="🛍️"></div>
-      <div class="work-overlay">
-        <div class="work-cat">電商視覺</div>
-        <div class="work-title">節慶促銷主視覺系列</div>
-        <div class="work-desc">雙十一大促全渠道視覺整合，涵蓋官網 Banner、社群貼文、EDM 及 OOH 廣告。</div>
+
+    <!-- 大 Banner 列：2 張主視覺（約 3:1 比例） -->
+    <div class="works-row-banner">
+      <div class="work-card banner" data-cat="ecommerce">
+        <div class="work-img-placeholder" data-icon="🛍️"></div>
+        <div class="work-overlay">
+          <div class="work-cat">電商視覺</div>
+          <div class="work-title">節慶促銷主視覺系列</div>
+          <div class="work-desc">雙十一大促全渠道視覺整合，涵蓋官網 Banner、社群貼文、EDM 及 OOH 廣告。</div>
+        </div>
+        <div class="work-label">E-Commerce</div>
       </div>
-      <div class="work-label">E-Commerce</div>
-    </div>
-    <div class="work-card" data-cat="brand">
-      <div class="work-img-placeholder" data-icon="◈"></div>
-      <div class="work-overlay">
-        <div class="work-cat">企業形象</div>
-        <div class="work-title">品牌識別系統重塑</div>
-        <div class="work-desc">從 Logo 延伸至完整 Brand Book，規範色彩、字型與輔助圖形的系統應用。</div>
+      <div class="work-card banner" data-cat="brand">
+        <div class="work-img-placeholder" data-icon="◈"></div>
+        <div class="work-overlay">
+          <div class="work-cat">企業形象</div>
+          <div class="work-title">品牌識別系統重塑</div>
+          <div class="work-desc">從 Logo 延伸至完整 Brand Book，規範色彩、字型與輔助圖形的系統應用。</div>
+        </div>
+        <div class="work-label">Branding</div>
       </div>
-      <div class="work-label">Branding</div>
     </div>
-    <div class="work-card" data-cat="sport">
-      <img src="sport001.jpg" alt="運動裝備" style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block;">
-      <div class="work-overlay">
-        <div class="work-cat">運動裝備</div>
-        <div class="work-title">球拍塗裝</div>
-        <div class="work-desc">融合幾何美學與運動動感，完成球拍塗裝設計及配色系統。</div>
+
+    <!-- 中圖列：1 張橫幅大圖（16:9） -->
+    <div class="works-row-banner single">
+      <div class="work-card medium" data-cat="sport">
+        <img src="sport001.jpg" alt="運動裝備" style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block;">
+        <div class="work-overlay">
+          <div class="work-cat">運動裝備</div>
+          <div class="work-title">球拍塗裝設計系列</div>
+          <div class="work-desc">融合幾何美學與運動動感，完成球拍塗裝設計及配色系統。</div>
+        </div>
+        <div class="work-label">SPORT</div>
       </div>
-      <div class="work-label">SPORT</div>
     </div>
-    <div class="work-card" data-cat="video">
-      <div class="work-img-placeholder" data-icon="▶"></div>
-      <div class="work-overlay">
-        <div class="work-cat">產品影片</div>
-        <div class="work-title">保養品系列形象影片</div>
-        <div class="work-desc">全程視覺指導，負責場景規劃、色調設定與後期影像修圖，打造質感形象影片。</div>
+
+    <!-- 小圖列：4 張縮圖（4:3） -->
+    <div class="works-row-small">
+      <div class="work-card small" data-cat="ecommerce">
+        <div class="work-img-placeholder" data-icon="🖼️"></div>
+        <div class="work-overlay">
+          <div class="work-cat">電商視覺</div>
+          <div class="work-title">EDM 系列設計</div>
+          <div class="work-desc">會員促銷 EDM 視覺規劃，開信率提升 23%。</div>
+        </div>
+        <div class="work-label">EDM</div>
       </div>
-      <div class="work-label">Video</div>
-    </div>
-    <div class="work-card" data-cat="blog">
-      <div class="work-img-placeholder" data-icon="✍️"></div>
-      <div class="work-overlay">
-        <div class="work-cat">自由撰稿人</div>
-        <div class="work-title">設計觀點專欄</div>
-        <div class="work-desc">定期撰寫品牌設計趨勢、設計師工作心法，累積超過 60 篇深度文章。</div>
+      <div class="work-card small" data-cat="brand">
+        <div class="work-img-placeholder" data-icon="📦"></div>
+        <div class="work-overlay">
+          <div class="work-cat">包裝設計</div>
+          <div class="work-title">禮盒包裝系列</div>
+          <div class="work-desc">節慶禮盒包裝設計，從結構到印刷監製全程負責。</div>
+        </div>
+        <div class="work-label">Packaging</div>
       </div>
-      <div class="work-label">Blog</div>
+      <div class="work-card small" data-cat="video">
+        <div class="work-img-placeholder" data-icon="▶"></div>
+        <div class="work-overlay">
+          <div class="work-cat">產品影片</div>
+          <div class="work-title">形象影片視覺指導</div>
+          <div class="work-desc">場景規劃、色調設定與後期影像修圖，打造質感形象影片。</div>
+        </div>
+        <div class="work-label">Video</div>
+      </div>
+      <div class="work-card small" data-cat="blog">
+        <div class="work-img-placeholder" data-icon="✍️"></div>
+        <div class="work-overlay">
+          <div class="work-cat">自由撰稿人</div>
+          <div class="work-title">設計觀點專欄</div>
+          <div class="work-desc">累積超過 60 篇品牌設計趨勢與設計師工作心法深度文章。</div>
+        </div>
+        <div class="work-label">Blog</div>
+      </div>
     </div>
+
   </div>
 </section>
 
