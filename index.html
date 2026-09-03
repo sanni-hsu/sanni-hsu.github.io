@@ -538,12 +538,12 @@
 .modal {
   display: none;             /* 預設隱藏 */
   position: fixed;
-  z-index: 9999;             /* 確保層級最高 */
+  z-index: 99999 !important; /* 強制置頂，避免被其他元素遮住 */
   left: 0;
   top: 0;
   width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.85); /* 半透明黑底 */
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.85);
   justify-content: center;
   align-items: center;
 }
