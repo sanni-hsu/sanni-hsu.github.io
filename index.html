@@ -866,6 +866,18 @@
   <div class="footer-copy">© 2026 Sanni · Visual Designer · All Rights Reserved</div>
 </footer>
 
+<!-- 1. 作品集圖片卡片 -->
+<div class="portfolio-item work-card">
+  <img src="your-image.jpg" alt="作品名稱" style="cursor: pointer;" onclick="openModal(this.src)">
+</div>
+
+<!-- 2. 彈窗本體（預設隱藏，放到腳本上方） -->
+<div id="imageModal" class="modal" onclick="closeModal()">
+  <span class="close-btn" onclick="closeModal()">&times;</span>
+  <img class="modal-content" id="modalImg" onclick="event.stopPropagation()">
+</div>
+
+<!-- 3. JavaScript 邏輯（一律放在 HTML 元素下方） -->
 <script>
   function filterWorks(cat, btn) {
     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
@@ -894,9 +906,8 @@
     observer.observe(el);
   });
 
-  // 👇 回到頂部按鈕邏輯（新增在這裡）
+  // 回到頂部按鈕邏輯
   const backToTopBtn = document.getElementById('backToTop');
-
   if (backToTopBtn) {
     window.addEventListener('scroll', () => {
       if (window.scrollY > 300) {
@@ -913,39 +924,33 @@
       });
     });
   }
-  // 開啟彈窗並帶入圖片路徑
-function openModal(imageSrc) {
-  const modal = document.getElementById("imageModal");
-  const modalImg = document.getElementById("modalImg");
-  
-  modalImg.src = imageSrc;
-  modal.style.display = "flex"; // 切換為彈窗顯示
-}
 
-// 關閉彈窗
-function closeModal() {
-  document.getElementById("imageModal").style.display = "none";
-}
-
-// 按下 ESC 鍵也能關閉彈窗
-document.addEventListener("keydown", function(event) {
-  if (event.key === "Escape") {
-    closeModal();
+  // ------------------------------------
+  // 彈窗控制邏輯
+  // ------------------------------------
+  function openModal(imageSrc) {
+    const modal = document.getElementById("imageModal");
+    const modalImg = document.getElementById("modalImg");
+    
+    if (modal && modalImg) {
+      modalImg.src = imageSrc;
+      modal.style.display = "flex"; // 開啟彈窗
+    } else {
+      console.error("找不到彈窗 HTML 元素！請檢查 id='imageModal' 是否存在。");
+    }
   }
-});
-</script>
-<!-- 作品集圖片（加入 onclick 觸發開窗） -->
-<div class="portfolio-item">
-  <img src="your-image.jpg" alt="作品名稱" onclick="openModal(this.src)">
-</div>
 
-<!-- 彈窗本體（預設隱藏） -->
-<div id="imageModal" class="modal" onclick="closeModal()">
-  <!-- 關閉按鈕 -->
-  <span class="close-btn" onclick="closeModal()">&times;</span>
-  
-  <!-- 彈窗內的放大圖片（阻止點擊圖片本身時關閉彈窗） -->
-  <img class="modal-content" id="modalImg" onclick="event.stopPropagation()">
-</div>
-</body>
+  function closeModal() {
+    const modal = document.getElementById("imageModal");
+    if (modal) {
+      modal.style.display = "none";
+    }
+  }
+
+  document.addEventListener("keydown", function(event) {
+    if (event.key === "Escape") {
+      closeModal();
+    }
+  });
+</script>
 </html>
