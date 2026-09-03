@@ -955,18 +955,30 @@
     }
   });
 
-  // 4. 原有作品篩選邏輯
+  // 自動綁定所有 work-card 點擊開啟彈窗
+  document.querySelectorAll('.work-card').forEach(card => {
+    card.style.cursor = 'pointer';
+    card.addEventListener('click', function () {
+      const img = card.querySelector('img');
+      if (img) {
+        openModal(img.src);
+      }
+    });
+  });
+
+  // 4. 作品篩選邏輯
   function filterWorks(cat, btn) {
     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     document.querySelectorAll('.work-card').forEach(card => {
       const match = cat === 'all' || card.dataset.cat === cat;
-      card.style.opacity = match ? '1' : '0.25';
+      card.style.opacity = match ? '1' : '0.2';
       card.style.pointerEvents = match ? 'auto' : 'none';
+      card.style.transform = 'translateY(0)';
     });
   }
 
-  // Scroll reveal
+  // Scroll reveal（不干擾已顯示的卡片）
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => {
       if (e.isIntersecting) {
@@ -976,9 +988,15 @@
     });
   }, { threshold: 0.1 });
 
-  document.querySelectorAll('.exp-item, .cat-card, .work-card').forEach(el => {
+  document.querySelectorAll('.exp-item, .cat-card').forEach(el => {
     el.style.opacity = '0';
     el.style.transform = 'translateY(24px)';
+    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    observer.observe(el);
+  });
+
+  // work-card 單獨處理，避免 opacity:0 干擾點擊綁定
+  document.querySelectorAll('.work-card').forEach(el => {
     el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
     observer.observe(el);
   });
