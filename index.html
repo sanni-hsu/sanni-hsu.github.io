@@ -481,8 +481,13 @@
     .works-row-banner { grid-template-columns: 1fr; }
     .works-row-small { grid-template-columns: repeat(2, 1fr); }
     .work-card.banner .work-img-placeholder,
-    .work-card.banner img { aspect-ratio: 16/9; }
+    .work-card.banner img { aspect-ratio: 16/9; object-fit: contain; background: #ffffff; }
     footer { padding: 32px 24px; flex-direction: column; gap: 12px; text-align: center; }
+    .work-label {
+    padding: 4px 8px;       
+    font-size: 0.6rem;      
+    bottom: 10px;           
+    left: 10px;}
   }
 </style>
 </head>
@@ -766,7 +771,7 @@
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">Sanni</div>
-  <div class="footer-copy">© 2024 Sanni · Visual Designer · All Rights Reserved</div>
+  <div class="footer-copy">© 202 Sanni · Visual Designer · All Rights Reserved</div>
 </footer>
 
 <script>
