@@ -879,6 +879,98 @@
 
 <!-- 3. JavaScript 邏輯（一律放在 HTML 元素下方） -->
 <script>
+  // 1. 自動注入彈窗所需的 CSS（確保不會被其他元素遮住，也不用手動貼 CSS）
+  (function injectModalCSS() {
+    if (!document.getElementById("modal-style-auto")) {
+      const style = document.createElement("style");
+      style.id = "modal-style-auto";
+      style.innerHTML = `
+        .modal-auto-overlay {
+          display: none;
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100vw;
+          height: 100vh;
+          background-color: rgba(0, 0, 0, 0.88);
+          z-index: 999999 !important;
+          justify-content: center;
+          align-items: center;
+          cursor: pointer;
+        }
+        .modal-auto-img {
+          max-width: 90vw;
+          max-height: 88vh;
+          object-fit: contain;
+          border-radius: 6px;
+          box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+          cursor: default;
+        }
+        .modal-auto-close {
+          position: absolute;
+          top: 20px;
+          right: 30px;
+          color: #ffffff;
+          font-size: 40px;
+          font-weight: 300;
+          cursor: pointer;
+          line-height: 1;
+          user-select: none;
+          transition: transform 0.2s;
+        }
+        .modal-auto-close:hover {
+          transform: scale(1.2);
+          color: #ff4d4d;
+        }
+      `;
+      document.head.appendChild(style);
+    }
+  })();
+
+  // 2. 開啟彈窗（若畫面上無彈窗元素會自動即時建構）
+  function openModal(imageSrc) {
+    let modal = document.getElementById("imageModal");
+    let modalImg = document.getElementById("modalImg");
+
+    // 動態建構彈窗 HTML
+    if (!modal) {
+      const modalContainer = document.createElement("div");
+      modalContainer.id = "imageModal";
+      modalContainer.className = "modal-auto-overlay";
+      modalContainer.onclick = closeModal;
+
+      modalContainer.innerHTML = `
+        <span class="modal-auto-close" onclick="closeModal()">&times;</span>
+        <img class="modal-auto-img" id="modalImg" onclick="event.stopPropagation()">
+      `;
+      document.body.appendChild(modalContainer);
+
+      modal = modalContainer;
+      modalImg = document.getElementById("modalImg");
+    }
+
+    if (modal && modalImg) {
+      modalImg.src = imageSrc;
+      modal.style.display = "flex";
+    }
+  }
+
+  // 3. 關閉彈窗
+  function closeModal() {
+    const modal = document.getElementById("imageModal");
+    if (modal) {
+      modal.style.display = "none";
+    }
+  }
+
+  // ESC 鍵關閉
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape") {
+      closeModal();
+    }
+  });
+
+  // 4. 原有作品篩選邏輯
   function filterWorks(cat, btn) {
     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
@@ -924,33 +1016,5 @@
       });
     });
   }
-
-  // ------------------------------------
-  // 彈窗控制邏輯
-  // ------------------------------------
-  function openModal(imageSrc) {
-    const modal = document.getElementById("imageModal");
-    const modalImg = document.getElementById("modalImg");
-    
-    if (modal && modalImg) {
-      modalImg.src = imageSrc;
-      modal.style.display = "flex"; // 開啟彈窗
-    } else {
-      console.error("找不到彈窗 HTML 元素！請檢查 id='imageModal' 是否存在。");
-    }
-  }
-
-  function closeModal() {
-    const modal = document.getElementById("imageModal");
-    if (modal) {
-      modal.style.display = "none";
-    }
-  }
-
-  document.addEventListener("keydown", function(event) {
-    if (event.key === "Escape") {
-      closeModal();
-    }
-  });
 </script>
 </html>
