@@ -131,15 +131,24 @@
     background: var(--yellow);
     padding: 14px 20px;
   }
-  .hero-stat-num {
-    font-family: 'Playfair Display', serif;
-    font-size: 2rem; font-weight: 900; color: var(--black);
-    line-height: 1;
-  }
-  .hero-stat-label {
-    font-size: 0.72rem; font-weight: 500; letter-spacing: 0.1em;
-    text-transform: uppercase; color: var(--black); margin-top: 4px;
-  }
+.hero-stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.15rem;      
+  font-weight: 900; 
+  color: var(--black);
+  line-height: 1.2;        
+  white-space: nowrap;     
+  margin-bottom: 6px;      
+}
+.hero-stat-label {
+  font-size: 0.65rem;       
+  font-weight: 500; 
+  letter-spacing: 0.08em;   
+  text-transform: uppercase; 
+  color: var(--black); 
+  margin-top: 4px;
+  line-height: 1.35;        
+}
   .hero-deco {
     position: absolute; bottom: 40px; right: 40px;
     font-family: 'Playfair Display', serif;
@@ -565,28 +574,28 @@
   </div>
   <div class="exp-grid">
     <div class="exp-item">
-      <div class="exp-period">2020 — 現在</div>
-      <div class="exp-role">資深視覺設計師</div>
-      <div class="exp-company">上市電商集團 · B2C 品牌部門</div>
-      <div class="exp-desc">品牌視覺年度改版，規劃電商官網、社群與 EDM 全渠道視覺一致性。帶領 3 人設計小組，與行銷、開發部門協作推進專案。</div>
+      <div class="exp-period">E-COMMERCE & BRAND TRANSFORMATION</div>
+      <div class="exp-role">視覺設計師</div>
+      <div class="exp-company">電商事業部 / B2C</div>
+      <div class="exp-desc">各大通路視覺策略，推進傳統品牌數位轉型，穩定產出高品質活動主視覺。落實實體產品包裝開發全流程，涵蓋概念、打樣至完稿發包；統籌線上線下全通路形象一致性，有效提升數位轉單效率。</div>
     </div>
     <div class="exp-item">
-      <div class="exp-period">2016 — 2020</div>
-      <div class="exp-role">視覺設計 / 專案負責人</div>
-      <div class="exp-company">百貨精品集團 · 品牌行銷部</div>
-      <div class="exp-desc">負責季度型錄、VIP 活動視覺、橱窗設計提案，以及企業形象識別系統維護與延伸應用。</div>
+      <div class="exp-period">BRAND VISUAL & DIGITAL EXPERIENCE</div>
+      <div class="exp-role">視覺設計師</div>
+      <div class="exp-company">品牌行銷部 / B2B</div>
+      <div class="exp-desc">維護跨媒介視覺一致性以強化品牌價值。產品系統介面呈現、Demo 與功能短片規劃；協作工程與行銷團隊，社群廣告與 EDM。兼具展覽與空間視覺統籌力，全方位完善企業整體形象。</div>
     </div>
     <div class="exp-item">
-      <div class="exp-period">2012 — 2016</div>
-      <div class="exp-role">設計師</div>
-      <div class="exp-company">體育用品品牌 · 產品設計部</div>
-      <div class="exp-desc">球拍塗裝設計、產品包裝開發及品牌輔助圖形設計，協助品牌進軍亞太市場視覺整合。</div>
+      <div class="exp-period">PRINTING & PACKAGING DESIGN</div>
+      <div class="exp-role">印刷包裝美編</div>
+      <div class="exp-company">印刷企業公司</div>
+      <div class="exp-desc">產品外盒、紙袋與目錄等品牌視覺規劃，掌握紙材應用。具備印前完稿能力。</div>
     </div>
     <div class="exp-item">
-      <div class="exp-period">2007 — 2012</div>
-      <div class="exp-role">初階設計師 / 美編</div>
-      <div class="exp-company">印刷媒體公司 · 美術部</div>
-      <div class="exp-desc">負責雜誌排版、廣告頁面設計及客戶提案製作，培養紮實的印刷製作知識與審美基礎。</div>
+      <div class="exp-period">Global Market & B2B</div>
+      <div class="exp-role">商業設計美編</div>
+      <div class="exp-company">跨國貿易 / 品牌視覺部</div>
+      <div class="exp-desc">B2B 平台視覺維護、商品攝影與影像編修，海外客戶客製化專案、產品包裝開發與官網視覺更新。具備完稿能力，直接對接工廠溝通製作細節。</div>
     </div>
   </div>
 </section>
@@ -604,29 +613,28 @@
     <button class="filter-btn active" onclick="filterWorks('all', this)">All</button>
     <button class="filter-btn" onclick="filterWorks('ecommerce', this)">電商視覺</button>
     <button class="filter-btn" onclick="filterWorks('brand', this)">企業形象</button>
-    <button class="filter-btn" onclick="filterWorks('sport', this)">運動裝備</button>
     <button class="filter-btn" onclick="filterWorks('video', this)">產品 Demo</button>
-    <button class="filter-btn" onclick="filterWorks('blog', this)">Blog</button>
+    <button class="filter-btn" onclick="filterWorks('blog', this)">自由撰稿</button>
   </div>
   <div class="works-grid">
 
     <!-- 大 Banner 列：2 張主視覺（約 3:1 比例） -->
 <div class="works-row-banner">
   <div class="work-card banner" data-cat="ecommerce">
-    <img src="bn01.png" alt="電商視覺">
+    <img src="bn01.png" alt="官網電商視覺">
     <div class="work-overlay">
-      <div class="work-cat">電商視覺</div>
-      <div class="work-title">節慶促銷主視覺系列</div>
-      <div class="work-desc">視覺整合，涵蓋官網 Banner、社群貼文、EDM。</div>
+      <div class="work-cat">官網電商視覺</div>
+      <div class="work-title">Banner</div>
+      <div class="work-desc">&nbsp;</div>
     </div>
     <div class="work-label">E-Commerce</div>
   </div>
   <div class="work-card banner" data-cat="brand">
-    <img src="bn02.png" alt="企業形象">
+    <img src="bn02.png" alt="官網電商視覺">
     <div class="work-overlay">
-      <div class="work-cat">企業形象</div>
-      <div class="work-title">品牌識別系統重塑</div>
-      <div class="work-desc">從 Logo 延伸至完整 Brand Book，規範色彩、字型與輔助圖形的系統應用。</div>
+      <div class="work-cat">官網電商視覺</div>
+      <div class="work-title">Banner</div>
+      <div class="work-desc">&nbsp;</div>
     </div>
     <div class="work-label">Branding</div>
   </div>
@@ -639,7 +647,8 @@
         <div class="work-overlay">
           <div class="work-cat">運動裝備</div>
           <div class="work-title">球拍塗裝設計系列</div>
-          <div class="work-desc">融合幾何美學與運動動感，完成球拍塗裝設計及配色系統。</div>
+          <div class="work-desc">融合幾何美學與運動動感，搭配球拍塗裝設計及配色系統。</div>
+          <div class="work-desc">&nbsp;</div>
         </div>
         <div class="work-label">SPORT</div>
       </div>
@@ -650,38 +659,38 @@
       <div class="work-card small" data-cat="ecommerce">
         <img src="cn01.jpg" alt="電商視覺">
         <div class="work-overlay">
-          <div class="work-cat">電商視覺</div>
-          <div class="work-title">EDM 系列設計</div>
-          <div class="work-desc">會員促銷 EDM 視覺規劃，開信率提升 23%。</div>
+          <div class="work-desc" style="visibility: hidden;">電商視覺</div>
+          <div class="work-desc" style="visibility: hidden;">EDM 系列設計</div>
+          <div class="work-desc" style="visibility: hidden;">會員促銷 EDM 視覺規劃，開信率提升 23%。</div>
         </div>
-        <div class="work-label">EDM</div>
+        <div class="work-label">Exhibition Booth</div>
       </div>
       <div class="work-card small" data-cat="brand">
         <img src="cn02.jpg" alt="企業形象">
         <div class="work-overlay">
-          <div class="work-cat">包裝設計</div>
-          <div class="work-title">禮盒包裝系列</div>
-          <div class="work-desc">節慶禮盒包裝設計，從結構到印刷監製全程負責。</div>
+          <div class="work-desc" style="visibility: hidden;">包裝設計</div>
+          <div class="work-desc" style="visibility: hidden;">禮盒包裝系列</div>
+          <div class="work-desc" style="visibility: hidden;">節慶禮盒包裝設計，從結構到印刷監製全程負責。</div>
         </div>
         <div class="work-label">Packaging</div>
       </div>
       <div class="work-card small" data-cat="video">
         <img src="cn03.jpg" alt="產品影片">
         <div class="work-overlay">
-          <div class="work-cat">產品影片</div>
-          <div class="work-title">形象影片視覺指導</div>
-          <div class="work-desc">場景規劃、色調設定與後期影像修圖，打造質感形象影片。</div>
+          <div class="work-desc" style="visibility: hidden;">產品影片</div>
+          <div class="work-desc" style="visibility: hidden;">形象影片視覺指導</div>
+          <div class="work-desc" style="visibility: hidden;">場景規劃、色調設定與後期影像修圖，打造質感形象影片。</div>
         </div>
-        <div class="work-label">Video</div>
+        <div class="work-label">Roll-up Banner</div>
       </div>
       <div class="work-card small" data-cat="blog">
         <img src="cn04.jpg" alt="自由撰稿人">
         <div class="work-overlay">
-          <div class="work-cat">自由撰稿人</div>
-          <div class="work-title">設計觀點專欄</div>
-          <div class="work-desc">累積超過 60 篇品牌設計趨勢與設計師工作心法深度文章。</div>
+          <div class="work-desc" style="visibility: hidden;">自由撰稿人</div>
+          <div class="work-desc" style="visibility: hidden;">設計觀點專欄</div>
+          <div class="work-desc" style="visibility: hidden;">累積超過 60 篇品牌設計趨勢與設計師工作心法深度文章。</div>
         </div>
-        <div class="work-label">Blog</div>
+        <div class="work-label">Product Design</div>
       </div>
     </div>
 
