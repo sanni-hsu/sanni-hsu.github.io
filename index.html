@@ -488,6 +488,51 @@
     font-size: 0.6rem;      
     bottom: 10px;           
     left: 10px;}
+    /* 回到頂部按鈕 */
+.back-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 44px;
+  height: 44px;
+  background: var(--yellow);
+  color: var(--black);
+  border: none;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  z-index: 999;
+}
+
+/* 滾動出現時的樣式 */
+.back-to-top.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.back-to-top:hover {
+  transform: translateY(-4px);
+  background: var(--white);
+}
+
+/* 手機版適當縮小並微調位置 */
+@media (max-width: 900px) {
+  .back-to-top {
+    bottom: 20px;
+    right: 20px;
+    width: 38px;
+    height: 38px;
+    font-size: 1rem;
+  }
+}
   }
 </style>
 </head>
@@ -767,11 +812,13 @@
     </div>
   </div>
 </section>
+<!-- 回到頂部按鈕 -->
+<button id="backToTop" class="back-to-top" aria-label="回到頂部">↑</button>
 
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">Sanni</div>
-  <div class="footer-copy">© 202 Sanni · Visual Designer · All Rights Reserved</div>
+  <div class="footer-copy">© 2026 Sanni · Visual Designer · All Rights Reserved</div>
 </footer>
 
 <script>
@@ -801,6 +848,26 @@
     el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
     observer.observe(el);
   });
+
+  // 👇 回到頂部按鈕邏輯（新增在這裡）
+  const backToTopBtn = document.getElementById('backToTop');
+
+  if (backToTopBtn) {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        backToTopBtn.classList.add('show');
+      } else {
+        backToTopBtn.classList.remove('show');
+      }
+    });
+
+    backToTopBtn.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  }
 </script>
 </body>
 </html>
