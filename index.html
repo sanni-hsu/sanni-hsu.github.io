@@ -970,7 +970,31 @@
     }
   });
 
-  // 4. 原有作品篩選邏輯
+  // 4. 自動綁定所有 work-card 的點擊開啟彈窗
+  document.querySelectorAll('.work-card').forEach(card => {
+    card.style.cursor = 'pointer';
+    card.addEventListener('click', function () {
+      const img = card.querySelector('img');
+      const placeholder = card.querySelector('.work-img-placeholder');
+      if (img) {
+        openModal(img.src);
+      } else if (placeholder) {
+        // 佔位圖：用空白圖示提示（尚未上傳圖片時）
+        const icon = placeholder.getAttribute('data-icon') || '🖼️';
+        const canvas = document.createElement('canvas');
+        canvas.width = 800; canvas.height = 267;
+        const ctx = canvas.getContext('2d');
+        ctx.fillStyle = '#E8DDD0';
+        ctx.fillRect(0, 0, 800, 267);
+        ctx.font = '80px serif';
+        ctx.textAlign = 'center';
+        ctx.fillText(icon, 400, 160);
+        openModal(canvas.toDataURL());
+      }
+    });
+  });
+
+  // 5. 原有作品篩選邏輯
   function filterWorks(cat, btn) {
     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
