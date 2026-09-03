@@ -534,6 +534,45 @@
   }
 }
   }
+  /* 彈窗背景遮罩 */
+.modal {
+  display: none;             /* 預設隱藏 */
+  position: fixed;
+  z-index: 9999;             /* 確保層級最高 */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.85); /* 半透明黑底 */
+  justify-content: center;
+  align-items: center;
+}
+
+/* 放大後的圖片 */
+.modal-content {
+  max-width: 90%;
+  max-height: 85vh;
+  object-fit: contain;
+  border-radius: 4px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* 右上角關閉按鈕 */
+.close-btn {
+  position: absolute;
+  top: 20px;
+  right: 35px;
+  color: #fff;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+  user-select: none;
+}
+
+.close-btn:hover {
+  color: #bbb;
+}
 </style>
 </head>
 <body>
@@ -874,6 +913,39 @@
       });
     });
   }
+  // 開啟彈窗並帶入圖片路徑
+function openModal(imageSrc) {
+  const modal = document.getElementById("imageModal");
+  const modalImg = document.getElementById("modalImg");
+  
+  modalImg.src = imageSrc;
+  modal.style.display = "flex"; // 切換為彈窗顯示
+}
+
+// 關閉彈窗
+function closeModal() {
+  document.getElementById("imageModal").style.display = "none";
+}
+
+// 按下 ESC 鍵也能關閉彈窗
+document.addEventListener("keydown", function(event) {
+  if (event.key === "Escape") {
+    closeModal();
+  }
+});
 </script>
+<!-- 作品集圖片（加入 onclick 觸發開窗） -->
+<div class="portfolio-item">
+  <img src="your-image.jpg" alt="作品名稱" onclick="openModal(this.src)">
+</div>
+
+<!-- 彈窗本體（預設隱藏） -->
+<div id="imageModal" class="modal" onclick="closeModal()">
+  <!-- 關閉按鈕 -->
+  <span class="close-btn" onclick="closeModal()">&times;</span>
+  
+  <!-- 彈窗內的放大圖片（阻止點擊圖片本身時關閉彈窗） -->
+  <img class="modal-content" id="modalImg" onclick="event.stopPropagation()">
+</div>
 </body>
 </html>
