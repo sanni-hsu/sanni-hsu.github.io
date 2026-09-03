@@ -509,7 +509,7 @@
   opacity: 0;
   visibility: hidden;
   transition: all 0.3s ease;
-  z-index: 999;
+  z-index: 9999999;
 }
 
 /* 滾動出現時的樣式 */
@@ -866,17 +866,6 @@
   <div class="footer-copy">© 2026 Sanni · Visual Designer · All Rights Reserved</div>
 </footer>
 
-<!-- 1. 作品集圖片卡片 -->
-<div class="portfolio-item work-card">
-  <img src="your-image.jpg" alt="作品名稱" style="cursor: pointer;" onclick="openModal(this.src)">
-</div>
-
-<!-- 2. 彈窗本體（預設隱藏，放到腳本上方） -->
-<div id="imageModal" class="modal" onclick="closeModal()">
-  <span class="close-btn" onclick="closeModal()">&times;</span>
-  <img class="modal-content" id="modalImg" onclick="event.stopPropagation()">
-</div>
-
 <!-- 3. JavaScript 邏輯（一律放在 HTML 元素下方） -->
 <script>
   // 1. 自動注入彈窗所需的 CSS（確保不會被其他元素遮住，也不用手動貼 CSS）
@@ -970,31 +959,7 @@
     }
   });
 
-  // 4. 自動綁定所有 work-card 的點擊開啟彈窗
-  document.querySelectorAll('.work-card').forEach(card => {
-    card.style.cursor = 'pointer';
-    card.addEventListener('click', function () {
-      const img = card.querySelector('img');
-      const placeholder = card.querySelector('.work-img-placeholder');
-      if (img) {
-        openModal(img.src);
-      } else if (placeholder) {
-        // 佔位圖：用空白圖示提示（尚未上傳圖片時）
-        const icon = placeholder.getAttribute('data-icon') || '🖼️';
-        const canvas = document.createElement('canvas');
-        canvas.width = 800; canvas.height = 267;
-        const ctx = canvas.getContext('2d');
-        ctx.fillStyle = '#E8DDD0';
-        ctx.fillRect(0, 0, 800, 267);
-        ctx.font = '80px serif';
-        ctx.textAlign = 'center';
-        ctx.fillText(icon, 400, 160);
-        openModal(canvas.toDataURL());
-      }
-    });
-  });
-
-  // 5. 原有作品篩選邏輯
+  // 4. 原有作品篩選邏輯
   function filterWorks(cat, btn) {
     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
