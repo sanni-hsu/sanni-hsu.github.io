@@ -380,8 +380,8 @@
   /* ── CONTACT ── */
   #contact { padding: 120px 80px; }
   .contact-grid {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
-    align-items: start;
+  display: block;
+  max-width: 680px; 
   }
   .contact-tagline {
     font-family: 'Playfair Display', serif;
@@ -532,7 +532,7 @@
 <section id="about">
   <div class="section-header">
     <div>
-      <div class="section-num">01 — About</div>
+      <div class="section-num">About</div>
       <h2 class="section-title">關於我</h2>
     </div>
     <div class="section-line"></div>
@@ -567,7 +567,7 @@
 <section id="experience">
   <div class="section-header">
     <div>
-      <div class="section-num">02 — Experience</div>
+      <div class="section-num">Experience</div>
       <h2 class="section-title">工作經歷</h2>
     </div>
     <div class="section-line" style="background:#333;"></div>
@@ -604,7 +604,7 @@
 <section id="works">
   <div class="section-header">
     <div>
-      <div class="section-num">03 — Works</div>
+      <div class="section-num">Works</div>
       <h2 class="section-title">作品集</h2>
     </div>
     <div class="section-line"></div>
@@ -701,7 +701,7 @@
 <section id="categories">
   <div class="section-header">
     <div>
-      <div class="section-num">04 — Specialties</div>
+      <div class="section-num">Specialties</div>
       <h2 class="section-title">專業領域</h2>
     </div>
     <div class="section-line"></div>
@@ -744,7 +744,7 @@
 <section id="contact">
   <div class="section-header">
     <div>
-      <div class="section-num">05 — Contact</div>
+      <div class="section-num">Contact</div>
       <h2 class="section-title">聯絡我</h2>
     </div>
     <div class="section-line"></div>
@@ -754,27 +754,10 @@
       <h3 class="contact-tagline">Let's create something <span>beautiful</span> together.</h3>
       <p class="contact-sub">歡迎邀約、合作提案或任何設計諮詢，期待與您一起打造有溫度的視覺故事。</p>
       <div class="contact-links">
-  <a href="mailto:sanniyuy@gmail.com" class="contact-link">
-    <div class="contact-link-icon">✉</div>
-    sanniyuy@gmail.com
-  </a>
-</div>
-    </div>
-    <div>
-      <div class="contact-form">
-        <div class="form-group">
-          <label class="form-label">姓名 / Name</label>
-          <input class="form-input" type="text" placeholder="Your name">
-        </div>
-        <div class="form-group">
-          <label class="form-label">Email</label>
-          <input class="form-input" type="email" placeholder="your@email.com">
-        </div>
-        <div class="form-group">
-          <label class="form-label">訊息 / Message</label>
-          <textarea class="form-textarea" placeholder="Tell me about your project..."></textarea>
-        </div>
-        <button class="form-submit">Send Message →</button>
+        <a href="mailto:sanniyuy@gmail.com" class="contact-link">
+          <div class="contact-link-icon">✉</div>
+          sanniyuy@gmail.com
+        </a>
       </div>
     </div>
   </div>
